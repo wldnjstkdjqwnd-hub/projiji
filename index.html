@@ -182,7 +182,7 @@ document.getElementById('adminLoginForm').addEventListener('submit',e=>{e.preven
 
 function adminPage(){
  view='admin';
- app.innerHTML=`<section><div class="wrap"><button class="back" id="adminBack">← 전시관으로 돌아가기</button><h1>전시관 관리자 (Supabase 연동 완료)</h1><p class="lead">작품을 추가하거나 수정·삭제하면 서버(Supabase)에 실시간으로 반영됩니다.</p><div class="tools"><button class="btn" id="newWork">+ 새 작품 추가</button></div><div id="editor"></div><h2>등록된 작품 (${W.length})</h2><div class="grid">${W.map(w=>`<div><div class="thumb">${img(w)}</div><h3>${E(w.t)}</h3><small>${E(w.a)}</small><p><button class="chip" data-edit="${w.id}">수정</button> <button class="chip" data-delete="${w.id}">삭제</button></p></div>`).join('')}</div></div></section>`;
+ app.innerHTML=`<section><div class="wrap"><button class="back" id="adminBack">← 전시관으로 돌아가기</button><h1>전시관 관리자</h1><p class="lead">작품을 추가하거나 수정·삭제하면 서버(Supabase)에 실시간으로 반영됩니다.</p><div class="tools"><button class="btn" id="newWork">+ 새 작품 추가</button></div><div id="editor"></div><h2>등록된 작품 (${W.length})</h2><div class="grid">${W.map(w=>`<div><div class="thumb">${img(w)}</div><h3>${E(w.t)}</h3><small>${E(w.a)}</small><p><button class="chip" data-edit="${w.id}">수정</button> <button class="chip" data-delete="${w.id}">삭제</button></p></div>`).join('')}</div></div></section>`;
  document.getElementById('adminBack').onclick=()=>{view='home';home()};
  document.getElementById('newWork').onclick=()=>workForm();
  app.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>workForm(W.find(w=>String(w.id)===b.dataset.edit)));
