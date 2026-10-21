@@ -1,103 +1,3 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<title>온라인 작품 전시관</title>
-<!-- Supabase JS Library -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  //
-  const SUPABASE_URL = 'https://rjfmpefivzcgewhddboe.supabase.co';
-  //
-  const SUPABASE_ANON_KEY = 'sb_publishable_cd1krCL4H2UvQX5d0yz_-w_YTpRzoKG';
-
-  const { createClient } = supabase;
-  const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-</script>
-<style>
-:root{--bg:#FBF6EC;--surface:#FFFDF8;--ink:#3B2F2A;--sub:#7A6A60;--line:#E8DDCB;--accent:#D9772B;--accent-ink:#FFFFFF;--soft:#F5E6D0;--band:#DCE6F2;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1F1A17;--surface:#28221E;--ink:#F3EADF;--sub:#B5A598;--line:#3D342D;--accent:#E8924A;--accent-ink:#1F1A17;--soft:#33291F;--band:#26303C;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#1F1A17;--surface:#28221E;--ink:#F3EADF;--sub:#B5A598;--line:#3D342D;--accent:#E8924A;--accent-ink:#1F1A17;--soft:#33291F;--band:#26303C;color-scheme:dark}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.7;word-break:keep-all}
-button{font:inherit;color:inherit;cursor:pointer}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.notice{background:var(--soft);font-size:13px;text-align:center;padding:8px 16px;color:var(--sub)}
-header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
-header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:60px;gap:12px;padding-top:6px;padding-bottom:6px}
-.logo{font-weight:700;font-size:17px;background:none;border:0;padding:0;text-align:left}
-nav{display:flex;gap:4px}
-nav button{background:none;border:0;padding:10px 12px;border-radius:10px;font-size:15px;color:var(--sub);white-space:nowrap}
-nav button:hover{color:var(--ink);background:var(--soft)}
-.hero{padding:56px 0 48px}
-.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
-.eyebrow{color:var(--accent);font-weight:600;font-size:14px;margin:0 0 8px}
-h1{font-size:clamp(28px,4.6vw,42px);line-height:1.3;margin:0 0 16px;letter-spacing:-.02em}
-.lead{color:var(--sub);margin:0 0 28px;font-size:17px}
-.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:13px 26px;font-weight:600}
-.btn:focus-visible,.chip:focus-visible,nav button:focus-visible,.card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.mosaic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}
-.mosaic img:nth-child(2){grid-row:span 2;aspect-ratio:auto;height:100%}
-section{padding:48px 0}
-h2{font-size:24px;margin:0 0 8px}
-.intro p{max-width:680px;color:var(--sub);margin:0 0 12px}
-.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0 28px}
-.search{flex:1 1 240px;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:11px 18px;font:inherit}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 15px;font-size:14px}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:24px 20px}
-.card{background:none;border:0;padding:0;text-align:left}
-.thumb{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--soft);display:block}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.card h3{font-size:16px;margin:10px 0 0}
-.card small{color:var(--sub);display:block}
-.tag{display:inline-block;font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:0 10px;margin-top:6px}
-.empty{text-align:center;color:var(--sub);padding:48px 0}
-.fallback{display:grid;place-items:center;height:100%;color:var(--sub);font-size:14px}
-.detail{padding:28px 0 56px}
-.back{background:none;border:0;color:var(--sub);padding:8px 0;font-size:15px}
-.stage{background:var(--soft);border-radius:18px;padding:16px;display:grid;place-items:center;margin:8px 0 28px;position:relative}
-.stage img{max-width:100%;max-height:70vh;border-radius:10px;display:block;cursor:zoom-in}
-.zoom{position:absolute;right:24px;bottom:24px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px}
-.meta{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-.meta h4{margin:0 0 4px;font-size:14px;color:var(--accent)}
-.meta p{margin:0 0 20px}
-.pn{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;margin-top:8px}
-.pn button{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 16px;max-width:48%}
-.pn button:disabled{opacity:.4;cursor:default}
-footer{background:var(--band);margin-top:24px;padding:40px 0 48px;font-size:14px}
-footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-footer h4{margin:0 0 4px}footer p{margin:0 0 6px;color:var(--sub)}
-.lb{position:fixed;inset:0;background:rgba(20,15,12,.88);display:none;z-index:20;overflow:auto;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px))}
-.lb.on{display:grid;place-items:center}
-.lb img{max-width:100%;max-height:92vh;cursor:zoom-in;border-radius:8px}
-.lb.big img{max-width:none;max-height:none;width:200%;cursor:zoom-out}
-.lb button{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:14px;background:#fff;color:#222;border:0;border-radius:999px;padding:8px 16px}
-@media(max-width:720px){.hero .wrap,.meta{grid-template-columns:1fr}.logo{font-size:14px;line-height:1.35}nav button{padding:8px 6px;font-size:14px}}
-@media(prefers-reduced-motion:no-preference){.card .thumb img{transition:transform .25s}.card:hover .thumb img{transform:scale(1.03)}}
-</style>
-</head>
-<body>
-<div class="notice">온라인 작품 전시회 페이지입니다.</div>
-<header><div class="wrap">
-<button class="logo" id="logo">AI 융합 디지털 드로잉 &amp; 굿즈 제작 클래스</button>
-<nav><button data-go="top">홈</button><button data-go="gallery">작품 둘러보기</button><button data-go="info">전시 안내</button><button id="adminOpen">관리자</button></nav>
-</div></header>
-<main id="app"></main>
-<div class="lb" id="lb" role="dialog" aria-label="작품 확대 보기"><button id="lbx">닫기</button><img id="lbi" alt=""></div>
-<div id="adminLoginBox" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(20,15,12,.65);padding:20px;align-items:center;justify-content:center">
- <form id="adminLoginForm" style="width:min(100%,420px);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 60px #0003">
-  <h2 id="adminLoginTitle">관리자 로그인</h2><p style="color:var(--sub)">비밀번호를 입력해 주세요. (기본 비밀번호: 1234)</p>
-  <label for="adminPassword">비밀번호</label><input id="adminPassword" type="password" autocomplete="current-password" required style="display:block;width:100%;margin:8px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:12px;font:inherit">
-  <p id="adminLoginError" role="alert" style="display:none;color:#b42318">비밀번호가 맞지 않습니다.</p><div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" id="adminCancel" class="chip">취소</button><button type="submit" class="btn">로그인</button></div>
- </form>
-</div>
-
 <script>
 const CATS=['전체','캐릭터','일러스트','굿즈디자인','AI 제작','디지털 드로잉'];
 let W = [];
@@ -108,12 +8,12 @@ function art(h=200){
  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
 }
 const E=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const img=(w)=>`<img src="${w.image||art()}" alt="${E(w.t)}" loading="lazy" onerror="this.outerHTML='<span class=&quot;fallback&quot;>이미지를 불러오지 못했어요</span>'">`;
+const img=(w)=>`<img src="${w.image_url || art()}" alt="${E(w.title)}" loading="lazy" onerror="this.outerHTML='<span class=&quot;fallback&quot;>이미지를 불러오지 못했어요</span>'">`;
 
 let cat='전체',q='',view='home';
 const app=document.getElementById('app');
-const tagsOf=w=>[w.c,w.c2].filter(Boolean);
-const list=()=>W.filter(w=>(cat==='전체'||tagsOf(w).includes(cat))&&(!q||(w.t+(w.a||'')).includes(q.trim())));
+const tagsOf=w=>[w.category].filter(Boolean);
+const list=()=>W.filter(w=>(cat==='전체'||tagsOf(w).includes(cat))&&(!q||((w.title||'')+(w.artist_name||'')).includes(q.trim())));
 
 async function fetchWorks() {
   const { data, error } = await _supabase.from('works').select('*').order('created_at', { ascending: false });
@@ -145,20 +45,20 @@ function home(){
 function draw(){
  document.getElementById('chips').innerHTML=CATS.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c}</button>`).join('');
  const l=list();
- document.getElementById('res').innerHTML=l.length?`<div class="grid">${l.map(w=>`<button class="card" data-id="${w.id}"><span class="thumb">${img(w)}</span><h3>${E(w.t)}</h3><small>${E(w.a)}</small><span class="tag">${E(w.c)}</span></button>`).join('')}</div>`:'<div class="empty">등록된 작품이 없거나 조건에 맞는 작품이 없어요.</div>';
+ document.getElementById('res').innerHTML=l.length?`<div class="grid">${l.map(w=>`<button class="card" data-id="${w.id}"><span class="thumb">${img(w)}</span><h3>${E(w.title)}</h3><small>${E(w.artist_name)}</small><span class="tag">${E(w.category)}</span></button>`).join('')}</div>`:'<div class="empty">등록된 작품이 없거나 조건에 맞는 작품이 없어요.</div>';
 }
 
 function detail(id){
  const w = W.find(item => item.id == id);
  if(!w) return;
  view='detail';
- app.innerHTML=`<div class="detail"><div class="wrap"><button class="back" id="back">← 전체 작품 목록</button><div class="stage">${img(w)}<button class="zoom" id="zoom">확대해서 보기</button></div><h1 style="font-size:28px">${E(w.t)}</h1><p class="lead" style="margin-bottom:24px">${E(w.a)}</p><div class="meta"><div><h4>작품 설명</h4><p>${E(w.d)}</p><h4>창작 의도</h4><p>${E(w.i)}</p></div><div><h4>분류</h4><p>${tagsOf(w).map(E).join(', ')}</p><h4>제작 도구 및 재료</h4><p>${E(w.tool)}</p></div></div></div></div>`;
+ app.innerHTML=`<div class="detail"><div class="wrap"><button class="back" id="back">← 전체 작품 목록</button><div class="stage">${img(w)}<button class="zoom" id="zoom">확대해서 보기</button></div><h1 style="font-size:28px">${E(w.title)}</h1><p class="lead" style="margin-bottom:24px">${E(w.artist_name)}</p><div class="meta"><div><h4>작품 설명</h4><p>${E(w.description)}</p><h4>창작 의도</h4><p>${E(w.intention)}</p></div><div><h4>분류</h4><p>${tagsOf(w).map(E).join(', ')}</p><h4>제작 도구 및 재료</h4><p>${E(w.tools)}</p></div></div></div></div>`;
  window.scrollTo(0,0);
  document.getElementById('back').onclick=()=>{view='home';home();go('gallery')};
  const zoomIt=()=>lb(w);document.getElementById('zoom').onclick=zoomIt;document.querySelector('.stage img').onclick=zoomIt;
 }
 
-function lb(w){const b=document.getElementById('lb');document.getElementById('lbi').src=w.image||art();document.getElementById('lbi').alt=w.t;b.classList.remove('big');b.classList.add('on')}
+function lb(w){const b=document.getElementById('lb');document.getElementById('lbi').src=w.image_url||art();document.getElementById('lbi').alt=w.title;b.classList.remove('big');b.classList.add('on')}
 function go(k){if(view==='detail'){view='home';home()}const m={top:'top',gallery:'gallery',info:'info'};document.getElementById(m[k]).scrollIntoView({behavior:'smooth'})}
 
 document.addEventListener('click',e=>{
@@ -182,7 +82,7 @@ document.getElementById('adminLoginForm').addEventListener('submit',e=>{e.preven
 
 function adminPage(){
  view='admin';
- app.innerHTML=`<section><div class="wrap"><button class="back" id="adminBack">← 전시관으로 돌아가기</button><h1>전시관 관리자</h1><p class="lead">작품을 추가하거나 수정·삭제하면 서버(Supabase)에 실시간으로 반영됩니다.</p><div class="tools"><button class="btn" id="newWork">+ 새 작품 추가</button></div><div id="editor"></div><h2>등록된 작품 (${W.length})</h2><div class="grid">${W.map(w=>`<div><div class="thumb">${img(w)}</div><h3>${E(w.t)}</h3><small>${E(w.a)}</small><p><button class="chip" data-edit="${w.id}">수정</button> <button class="chip" data-delete="${w.id}">삭제</button></p></div>`).join('')}</div></div></section>`;
+ app.innerHTML=`<section><div class="wrap"><button class="back" id="adminBack">← 전시관으로 돌아가기</button><h1>전시관 관리자</h1><p class="lead">작품을 추가하거나 수정·삭제하면 서버(Supabase)에 실시간으로 반영됩니다.</p><div class="tools"><button class="btn" id="newWork">+ 새 작품 추가</button></div><div id="editor"></div><h2>등록된 작품 (${W.length})</h2><div class="grid">${W.map(w=>`<div><div class="thumb">${img(w)}</div><h3>${E(w.title)}</h3><small>${E(w.artist_name)}</small><p><button class="chip" data-edit="${w.id}">수정</button> <button class="chip" data-delete="${w.id}">삭제</button></p></div>`).join('')}</div></div></section>`;
  document.getElementById('adminBack').onclick=()=>{view='home';home()};
  document.getElementById('newWork').onclick=()=>workForm();
  app.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>workForm(W.find(w=>String(w.id)===b.dataset.edit)));
@@ -196,14 +96,14 @@ function adminPage(){
  });
 }
 
-function workForm(w={id:null,t:'',a:'',c:'캐릭터',tool:'',d:'',i:'',image:''}){
- document.getElementById('editor').innerHTML=`<div style="border:1px solid var(--line);background:var(--surface);padding:20px;border-radius:16px;margin:20px 0"><h2>${w.id?'작품 수정':'새 작품 추가'}</h2><form id="workForm"><p>작품명 <input class="search" name="t" required value="${E(w.t)}"></p><p>공개 작가명 <input class="search" name="a" value="${E(w.a)}"></p><p>분류 <select class="search" name="c">${CATS.filter(c=>c!=='전체').map(c=>`<option ${w.c===c?'selected':''}>${c}</option>`).join('')}</select></p><p>제작 도구 <input class="search" name="tool" value="${E(w.tool)}"></p><p>작품 설명 <textarea class="search" name="d">${E(w.d)}</textarea></p><p>창작 의도 <textarea class="search" name="i">${E(w.i)}</textarea></p><p>작품 이미지 <input type="file" id="workImage" accept="image/*"></p>${w.image?`<p><img src="${w.image}" style="height:80px;border-radius:8px;"></p>`:''}<button class="btn" type="submit">Supabase에 저장</button> <button class="chip" type="button" id="cancelForm">취소</button></form></div>`;
+function workForm(w={id:null,title:'',artist_name:'',category:'캐릭터',tools:'',description:'',intention:'',image_url:''}){
+ document.getElementById('editor').innerHTML=`<div style="border:1px solid var(--line);background:var(--surface);padding:20px;border-radius:16px;margin:20px 0"><h2>${w.id?'작품 수정':'새 작품 추가'}</h2><form id="workForm"><p>작품명 <input class="search" name="title" required value="${E(w.title)}"></p><p>공개 작가명 <input class="search" name="artist_name" value="${E(w.artist_name)}"></p><p>분류 <select class="search" name="category">${CATS.filter(c=>c!=='전체').map(c=>`<option ${w.category===c?'selected':''}>${c}</option>`).join('')}</select></p><p>제작 도구 <input class="search" name="tools" value="${E(w.tools)}"></p><p>작품 설명 <textarea class="search" name="description">${E(w.description)}</textarea></p><p>창작 의도 <textarea class="search" name="intention">${E(w.intention)}</textarea></p><p>작품 이미지 <input type="file" id="workImage" accept="image/*"></p>${w.image_url?`<p><img src="${w.image_url}" style="height:80px;border-radius:8px;"></p>`:''}<button class="btn" type="submit">Supabase에 저장</button> <button class="chip" type="button" id="cancelForm">취소</button></form></div>`;
  
  document.getElementById('cancelForm').onclick=()=>document.getElementById('editor').innerHTML='';
  document.getElementById('workForm').onsubmit=async e=>{
    e.preventDefault();
    const f=e.target;
-   let imageUrl = w.image || '';
+   let imageUrl = w.image_url || '';
    const file = document.getElementById('workImage').files[0];
 
    if(file){
@@ -215,13 +115,13 @@ function workForm(w={id:null,t:'',a:'',c:'캐릭터',tool:'',d:'',i:'',image:''}
    }
 
    const payload = {
-    title: f.t.value,            // 작품명 (t -> title)
-    artist_name: f.a.value,      // 작가명 (a -> artist_name)
-    category: f.c.value,         // 분류 (c -> category)
-    tools: f.tool.value,         // 제작 도구 (tool -> tools)
-    description: f.d.value,      // 작품 설명 (d -> description)
-    intention: f.i.value,        // 창작 의도 (i -> intention)
-    image_url: imageUrl          // 이미지 URL (image -> image_url)
+    title: f.title.value,
+    artist_name: f.artist_name.value,
+    category: f.category.value,
+    tools: f.tools.value,
+    description: f.description.value,
+    intention: f.intention.value,
+    image_url: imageUrl
    };
 
    if(w.id){
@@ -242,5 +142,3 @@ function workForm(w={id:null,t:'',a:'',c:'캐릭터',tool:'',d:'',i:'',image:''}
 fetchWorks();
 applySettings();
 </script>
-</body>
-</html>
