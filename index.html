@@ -27,7 +27,8 @@ async function fetchWorks() {
 
 function applySettings(){
   document.title=settings.siteTitle;
-  document.getElementById('logo').textContent=settings.siteTitle;
+  const logoEl = document.getElementById('logo');
+  if(logoEl) logoEl.textContent=settings.siteTitle;
   document.documentElement.style.setProperty('--bg',settings.bg);
   document.documentElement.style.setProperty('--accent',settings.accent);
   document.documentElement.style.setProperty('--ink',settings.ink);
@@ -43,9 +44,11 @@ function home(){
 }
 
 function draw(){
- document.getElementById('chips').innerHTML=CATS.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c}</button>`).join('');
+ const chipsEl = document.getElementById('chips');
+ if(chipsEl) chipsEl.innerHTML=CATS.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c}</button>`).join('');
  const l=list();
- document.getElementById('res').innerHTML=l.length?`<div class="grid">${l.map(w=>`<button class="card" data-id="${w.id}"><span class="thumb">${img(w)}</span><h3>${E(w.title)}</h3><small>${E(w.artist_name)}</small><span class="tag">${E(w.category)}</span></button>`).join('')}</div>`:'<div class="empty">등록된 작품이 없거나 조건에 맞는 작품이 없어요.</div>';
+ const resEl = document.getElementById('res');
+ if(resEl) resEl.innerHTML=l.length?`<div class="grid">${l.map(w=>`<button class="card" data-id="${w.id}"><span class="thumb">${img(w)}</span><h3>${E(w.title)}</h3><small>${E(w.artist_name)}</small><span class="tag">${E(w.category)}</span></button>`).join('')}</div>`:'<div class="empty">등록된 작품이 없거나 조건에 맞는 작품이 없어요.</div>';
 }
 
 function detail(id){
@@ -54,37 +57,89 @@ function detail(id){
  view='detail';
  app.innerHTML=`<div class="detail"><div class="wrap"><button class="back" id="back">← 전체 작품 목록</button><div class="stage">${img(w)}<button class="zoom" id="zoom">확대해서 보기</button></div><h1 style="font-size:28px">${E(w.title)}</h1><p class="lead" style="margin-bottom:24px">${E(w.artist_name)}</p><div class="meta"><div><h4>작품 설명</h4><p>${E(w.description)}</p><h4>창작 의도</h4><p>${E(w.intention)}</p></div><div><h4>분류</h4><p>${tagsOf(w).map(E).join(', ')}</p><h4>제작 도구 및 재료</h4><p>${E(w.tools)}</p></div></div></div></div>`;
  window.scrollTo(0,0);
- document.getElementById('back').onclick=()=>{view='home';home();go('gallery')};
- const zoomIt=()=>lb(w);document.getElementById('zoom').onclick=zoomIt;document.querySelector('.stage img').onclick=zoomIt;
+ 
+ const backBtn = document.getElementById('back');
+ if(backBtn) backBtn.onclick=()=>{view='home';home();go('gallery')};
+ 
+ const zoomBtn = document.getElementById('zoom');
+ const stageImg = document.querySelector('.stage img');
+ const zoomIt=()=>lb(w);
+ if(zoomBtn) zoomBtn.onclick=zoomIt;
+ if(stageImg) stageImg.onclick=zoomIt;
 }
 
-function lb(w){const b=document.getElementById('lb');document.getElementById('lbi').src=w.image_url||art();document.getElementById('lbi').alt=w.title;b.classList.remove('big');b.classList.add('on')}
-function go(k){if(view==='detail'){view='home';home()}const m={top:'top',gallery:'gallery',info:'info'};document.getElementById(m[k]).scrollIntoView({behavior:'smooth'})}
+function lb(w){
+ const b=document.getElementById('lb');
+ const lbi=document.getElementById('lbi');
+ if(lbi){ lbi.src=w.image_url||art(); lbi.alt=w.title; }
+ if(b){ b.classList.remove('big'); b.classList.add('on'); }
+}
+
+function go(k){
+ if(view==='detail'){view='home';home()}
+ const targetEl = document.getElementById(k==='top'?'top':k==='gallery'?'gallery':'info');
+ if(targetEl) targetEl.scrollIntoView({behavior:'smooth'});
+}
 
 document.addEventListener('click',e=>{
  const t=e.target.closest('[data-go],[data-cat],[data-id]');
- if(t?.dataset.go)go(t.dataset.go);
- else if(t?.dataset.cat){cat=t.dataset.cat;draw()}
- else if(t?.dataset.id)detail(t.dataset.id);
+ if(!t) return;
+ if(t.dataset.go)go(t.dataset.go);
+ else if(t.dataset.cat){cat=t.dataset.cat;draw()}
+ else if(t.dataset.id)detail(t.dataset.id);
 });
+
 document.addEventListener('input',e=>{if(e.target.id==='q'){q=e.target.value;draw()}});
-document.getElementById('logo').onclick=()=>{view='home';home();scrollTo(0,0)};
+
+const logoBtn = document.getElementById('logo');
+if(logoBtn) logoBtn.onclick=()=>{view='home';home();scrollTo(0,0)};
+
 const L=document.getElementById('lb');
-document.getElementById('lbx').onclick=()=>L.classList.remove('on');
-document.getElementById('lbi').onclick=()=>L.classList.toggle('big');
+const lbxBtn=document.getElementById('lbx');
+const lbiImg=document.getElementById('lbi');
+if(lbxBtn && L) lbxBtn.onclick=()=>L.classList.remove('on');
+if(lbiImg && L) lbiImg.onclick=()=>L.classList.toggle('big');
 
 const adminLoginBox=document.getElementById('adminLoginBox');
-function adminLogin(){document.getElementById('adminLoginError').style.display='none';document.getElementById('adminPassword').value='';adminLoginBox.style.display='flex'}
-function closeAdminLogin(){adminLoginBox.style.display='none'}
-document.getElementById('adminOpen').addEventListener('click',adminLogin);
-document.getElementById('adminCancel').addEventListener('click',closeAdminLogin);
-document.getElementById('adminLoginForm').addEventListener('submit',e=>{e.preventDefault();if(document.getElementById('adminPassword').value==='20161020'){closeAdminLogin();adminPage()}else{document.getElementById('adminLoginError').style.display='block'}});
+function adminLogin(){
+  const errEl = document.getElementById('adminLoginError');
+  const pwEl = document.getElementById('adminPassword');
+  if(errEl) errEl.style.display='none';
+  if(pwEl) pwEl.value='';
+  if(adminLoginBox) adminLoginBox.style.display='flex';
+}
+function closeAdminLogin(){ if(adminLoginBox) adminLoginBox.style.display='none'; }
+
+const adminOpenBtn = document.getElementById('adminOpen');
+const adminCancelBtn = document.getElementById('adminCancel');
+const adminLoginForm = document.getElementById('adminLoginForm');
+
+if(adminOpenBtn) adminOpenBtn.addEventListener('click',adminLogin);
+if(adminCancelBtn) adminCancelBtn.addEventListener('click',closeAdminLogin);
+if(adminLoginForm) {
+  adminLoginForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const pwInput = document.getElementById('adminPassword');
+    const errEl = document.getElementById('adminLoginError');
+    if(pwInput && pwInput.value==='20161020'){
+      closeAdminLogin();
+      adminPage();
+    }else if(errEl){
+      errEl.style.display='block';
+    }
+  });
+}
 
 function adminPage(){
  view='admin';
  app.innerHTML=`<section><div class="wrap"><button class="back" id="adminBack">← 전시관으로 돌아가기</button><h1>전시관 관리자</h1><p class="lead">작품을 추가하거나 수정·삭제하면 서버(Supabase)에 실시간으로 반영됩니다.</p><div class="tools"><button class="btn" id="newWork">+ 새 작품 추가</button></div><div id="editor"></div><h2>등록된 작품 (${W.length})</h2><div class="grid">${W.map(w=>`<div><div class="thumb">${img(w)}</div><h3>${E(w.title)}</h3><small>${E(w.artist_name)}</small><p><button class="chip" data-edit="${w.id}">수정</button> <button class="chip" data-delete="${w.id}">삭제</button></p></div>`).join('')}</div></div></section>`;
- document.getElementById('adminBack').onclick=()=>{view='home';home()};
- document.getElementById('newWork').onclick=()=>workForm();
+ 
+ const adminBackBtn = document.getElementById('adminBack');
+ if(adminBackBtn) adminBackBtn.onclick=()=>{view='home';home()};
+ 
+ const newWorkBtn = document.getElementById('newWork');
+ if(newWorkBtn) newWorkBtn.onclick=()=>workForm();
+ 
  app.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>workForm(W.find(w=>String(w.id)===b.dataset.edit)));
  app.querySelectorAll('[data-delete]').forEach(b=>b.onclick=async ()=>{
    if(confirm('이 작품을 정말 삭제할까요?')){
@@ -97,45 +152,54 @@ function adminPage(){
 }
 
 function workForm(w={id:null,title:'',artist_name:'',category:'캐릭터',tools:'',description:'',intention:'',image_url:''}){
- document.getElementById('editor').innerHTML=`<div style="border:1px solid var(--line);background:var(--surface);padding:20px;border-radius:16px;margin:20px 0"><h2>${w.id?'작품 수정':'새 작품 추가'}</h2><form id="workForm"><p>작품명 <input class="search" name="title" required value="${E(w.title)}"></p><p>공개 작가명 <input class="search" name="artist_name" value="${E(w.artist_name)}"></p><p>분류 <select class="search" name="category">${CATS.filter(c=>c!=='전체').map(c=>`<option ${w.category===c?'selected':''}>${c}</option>`).join('')}</select></p><p>제작 도구 <input class="search" name="tools" value="${E(w.tools)}"></p><p>작품 설명 <textarea class="search" name="description">${E(w.description)}</textarea></p><p>창작 의도 <textarea class="search" name="intention">${E(w.intention)}</textarea></p><p>작품 이미지 <input type="file" id="workImage" accept="image/*"></p>${w.image_url?`<p><img src="${w.image_url}" style="height:80px;border-radius:8px;"></p>`:''}<button class="btn" type="submit">Supabase에 저장</button> <button class="chip" type="button" id="cancelForm">취소</button></form></div>`;
+ const editorEl = document.getElementById('editor');
+ if(!editorEl) return;
  
- document.getElementById('cancelForm').onclick=()=>document.getElementById('editor').innerHTML='';
- document.getElementById('workForm').onsubmit=async e=>{
-   e.preventDefault();
-   const f=e.target;
-   let imageUrl = w.image_url || '';
-   const file = document.getElementById('workImage').files[0];
+ editorEl.innerHTML=`<div style="border:1px solid var(--line);background:var(--surface);padding:20px;border-radius:16px;margin:20px 0"><h2>${w.id?'작품 수정':'새 작품 추가'}</h2><form id="workForm"><p>작품명 <input class="search" name="title" required value="${E(w.title)}"></p><p>공개 작가명 <input class="search" name="artist_name" value="${E(w.artist_name)}"></p><p>분류 <select class="search" name="category">${CATS.filter(c=>c!=='전체').map(c=>`<option ${w.category===c?'selected':''}>${c}</option>`).join('')}</select></p><p>제작 도구 <input class="search" name="tools" value="${E(w.tools)}"></p><p>작품 설명 <textarea class="search" name="description">${E(w.description)}</textarea></p><p>창작 의도 <textarea class="search" name="intention">${E(w.intention)}</textarea></p><p>작품 이미지 <input type="file" id="workImage" accept="image/*"></p>${w.image_url?`<p><img src="${w.image_url}" style="height:80px;border-radius:8px;"></p>`:''}<button class="btn" type="submit">Supabase에 저장</button> <button class="chip" type="button" id="cancelForm">취소</button></form></div>`;
+ 
+ const cancelFormBtn = document.getElementById('cancelForm');
+ if(cancelFormBtn) cancelFormBtn.onclick=()=>editorEl.innerHTML='';
+ 
+ const workFormEl = document.getElementById('workForm');
+ if(workFormEl) {
+   workFormEl.onsubmit=async e=>{
+     e.preventDefault();
+     const f=e.target;
+     let imageUrl = w.image_url || '';
+     const workImageInput = document.getElementById('workImage');
+     const file = workImageInput ? workImageInput.files[0] : null;
 
-   if(file){
-     const fileName = `${Date.now()}_${file.name}`;
-     const { data: storageData, error: storageError } = await _supabase.storage.from('images').upload(fileName, file);
-     if(storageError){ alert('이미지 업로드 오류: ' + storageError.message); return; }
-     const { data: publicData } = _supabase.storage.from('images').getPublicUrl(fileName);
-     imageUrl = publicData.publicUrl;
+     if(file){
+       const fileName = `${Date.now()}_${file.name}`;
+       const { data: storageData, error: storageError } = await _supabase.storage.from('images').upload(fileName, file);
+       if(storageError){ alert('이미지 업로드 오류: ' + storageError.message); return; }
+       const { data: publicData } = _supabase.storage.from('images').getPublicUrl(fileName);
+       imageUrl = publicData.publicUrl;
+     }
+
+     const payload = {
+      title: f.title.value,
+      artist_name: f.artist_name.value,
+      category: f.category.value,
+      tools: f.tools.value,
+      description: f.description.value,
+      intention: f.intention.value,
+      image_url: imageUrl
+     };
+
+     if(w.id){
+       const { error } = await _supabase.from('works').update(payload).eq('id', w.id);
+       if(error) alert('수정 실패: ' + error.message);
+       else alert('성공적으로 수정되었습니다!');
+     } else {
+       const { error } = await _supabase.from('works').insert([payload]);
+       if(error) alert('등록 실패: ' + error.message);
+       else alert('성공적으로 등록되었습니다!');
+     }
+
+     await fetchWorks();
+     adminPage();
    }
-
-   const payload = {
-    title: f.title.value,
-    artist_name: f.artist_name.value,
-    category: f.category.value,
-    tools: f.tools.value,
-    description: f.description.value,
-    intention: f.intention.value,
-    image_url: imageUrl
-   };
-
-   if(w.id){
-     const { error } = await _supabase.from('works').update(payload).eq('id', w.id);
-     if(error) alert('수정 실패: ' + error.message);
-     else alert('성공적으로 수정되었습니다!');
-   } else {
-     const { error } = await _supabase.from('works').insert([payload]);
-     if(error) alert('등록 실패: ' + error.message);
-     else alert('성공적으로 등록되었습니다!');
-   }
-
-   await fetchWorks();
-   adminPage();
  }
 }
 
