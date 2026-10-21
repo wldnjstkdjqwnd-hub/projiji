@@ -215,13 +215,14 @@ function workForm(w={id:null,t:'',a:'',c:'캐릭터',tool:'',d:'',i:'',image:''}
    }
 
    const payload = {
-     t: f.t.value,
-     a: f.a.value,
-     c: f.c.value,
-     tool: f.tool.value,
-     d: f.d.value,
-     i: f.i.value,
-     image: imageUrl
+    const payload = {
+    title: f.t.value,            // 작품명 (t -> title)
+    artist_name: f.a.value,      // 작가명 (a -> artist_name)
+    category: f.c.value,         // 분류 (c -> category)
+    tools: f.tool.value,         // 제작 도구 (tool -> tools)
+    description: f.d.value,      // 작품 설명 (d -> description)
+    intention: f.i.value,        // 창작 의도 (i -> intention)
+    image_url: imageUrl          // 이미지 URL (image -> image_url)
    };
 
    if(w.id){
