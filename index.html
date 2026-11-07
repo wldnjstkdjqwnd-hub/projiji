@@ -9,177 +9,358 @@
 
 <style>
 :root{
---bg:#FBF6EC;--surface:#FFFDF8;--ink:#3B2F2A;
---sub:#7A6A60;--line:#E8DDCB;--accent:#D9772B;
---accent-ink:#FFFFFF;--soft:#F5E6D0;--band:#DCE6F2;
-box-sizing:border-box;
+  --bg:#FBF6EC;
+  --surface:#FFFDF8;
+  --ink:#3B2F2A;
+  --sub:#7A6A60;
+  --line:#E8DDCB;
+  --accent:#D9772B;
+  --accent-ink:#FFFFFF;
+  --soft:#F5E6D0;
+  --band:#DCE6F2;
+  box-sizing:border-box;
 }
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{
-margin:0;background:var(--bg);color:var(--ink);
-font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-line-height:1.7;word-break:keep-all
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.7;
+  word-break:keep-all
 }
 button{font:inherit;color:inherit;cursor:pointer}
 input,select,textarea{font:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.notice{background:var(--soft);font-size:13px;text-align:center;padding:8px 16px;color:var(--sub)}
+.notice{
+  background:var(--soft);
+  font-size:13px;
+  text-align:center;
+  padding:8px 16px;
+  color:var(--sub)
+}
 header{
-position:sticky;top:env(safe-area-inset-top,0px);
-background:var(--bg);border-bottom:1px solid var(--line);z-index:5
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+  z-index:5
 }
 header .wrap{
-display:flex;align-items:center;justify-content:space-between;
-min-height:60px;gap:12px;padding-top:6px;padding-bottom:6px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:60px;
+  gap:12px;
+  padding-top:6px;
+  padding-bottom:6px
 }
-.logo{font-weight:700;font-size:17px;background:none;border:0;padding:0;text-align:left}
+.logo{
+  font-weight:700;
+  font-size:17px;
+  background:none;
+  border:0;
+  padding:0;
+  text-align:left
+}
 nav{display:flex;gap:4px}
 nav button{
-background:none;border:0;padding:10px 12px;border-radius:10px;
-font-size:15px;color:var(--sub);white-space:nowrap
+  background:none;
+  border:0;
+  padding:10px 12px;
+  border-radius:10px;
+  font-size:15px;
+  color:var(--sub);
+  white-space:nowrap
 }
 nav button:hover{color:var(--ink);background:var(--soft)}
 .hero{padding:56px 0 48px}
 .hero .wrap{
-display:grid;grid-template-columns:1.1fr 1fr;
-gap:40px;align-items:center
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:40px;
+  align-items:center
 }
-.eyebrow{color:var(--accent);font-weight:600;font-size:14px;margin:0 0 8px}
-h1{font-size:clamp(28px,4.6vw,42px);line-height:1.3;margin:0 0 16px;letter-spacing:-.02em}
+.eyebrow{
+  color:var(--accent);
+  font-weight:600;
+  font-size:14px;
+  margin:0 0 8px
+}
+h1{
+  font-size:clamp(28px,4.6vw,42px);
+  line-height:1.3;
+  margin:0 0 16px;
+  letter-spacing:-.02em
+}
 .lead{color:var(--sub);margin:0 0 28px;font-size:17px}
 .btn{
-background:var(--accent);color:var(--accent-ink);
-border:0;border-radius:999px;padding:13px 26px;font-weight:600
+  background:var(--accent);
+  color:var(--accent-ink);
+  border:0;
+  border-radius:999px;
+  padding:13px 26px;
+  font-weight:600
 }
 .btn:disabled{opacity:.5;cursor:wait}
 .mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.mosaic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}
-.mosaic img:nth-child(2){grid-row:span 2;aspect-ratio:auto;height:100%}
+.mosaic img{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:14px;
+  display:block
+}
+.mosaic img:nth-child(2){
+  grid-row:span 2;
+  aspect-ratio:auto;
+  height:100%
+}
 section{padding:48px 0}
 h2{font-size:24px;margin:0 0 8px}
 h3{font-size:17px}
 .intro p{max-width:680px;color:var(--sub);margin:0 0 12px}
-.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}
-.search{
-flex:1 1 200px;min-width:0;border:1px solid var(--line);
-background:var(--surface);color:var(--ink);
-border-radius:12px;padding:11px 14px
+.tools{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:20px 0
 }
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}
+.search{
+  flex:1 1 200px;
+  min-width:0;
+  border:1px solid var(--line);
+  background:var(--surface);
+  color:var(--ink);
+  border-radius:12px;
+  padding:11px 14px
+}
+.chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0 20px
+}
 .chip{
-border:1px solid var(--line);background:var(--surface);
-border-radius:999px;padding:7px 15px;font-size:14px
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:999px;
+  padding:7px 15px;
+  font-size:14px
 }
 .chip[aria-pressed="true"]{
-background:var(--accent);color:var(--accent-ink);border-color:var(--accent)
+  background:var(--accent);
+  color:var(--accent-ink);
+  border-color:var(--accent)
 }
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:24px 20px}
-.card{background:none;border:0;padding:0;text-align:left;min-width:0}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:24px 20px
+}
+.card{
+  background:none;
+  border:0;
+  padding:0;
+  text-align:left;
+  min-width:0
+}
 .thumb{
-aspect-ratio:4/3;border-radius:14px;overflow:hidden;
-background:var(--soft);display:grid;place-items:center
+  aspect-ratio:4/3;
+  border-radius:14px;
+  overflow:hidden;
+  background:var(--soft);
+  display:grid;
+  place-items:center
 }
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
 .card h3{font-size:16px;margin:10px 0 0}
 .card small{color:var(--sub);display:block}
 .tag{
-display:inline-block;font-size:12px;color:var(--sub);
-border:1px solid var(--line);border-radius:999px;padding:0 10px;margin-top:6px
+  display:inline-block;
+  font-size:12px;
+  color:var(--sub);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:0 10px;
+  margin-top:6px
 }
 .empty{text-align:center;color:var(--sub);padding:48px 0}
-.fallback{display:grid;place-items:center;height:100%;color:var(--sub);font-size:14px}
-.detail{padding:28px 0 56px}
-.back{background:none;border:0;color:var(--sub);padding:8px 0;font-size:15px}
-.stage{
-background:var(--soft);border-radius:18px;padding:16px;
-display:grid;place-items:center;margin:8px 0 28px;position:relative;min-height:180px
+.fallback{
+  display:grid;
+  place-items:center;
+  height:100%;
+  color:var(--sub);
+  font-size:14px
 }
-.stage img{max-width:100%;max-height:70vh;border-radius:10px;display:block;cursor:zoom-in}
+.error-message{
+  background:#FFF0EC;
+  border:1px solid #E7B9AA;
+  color:#9B3826;
+  padding:16px;
+  border-radius:12px;
+  margin:20px 0;
+  word-break:break-word
+}
+.detail{padding:28px 0 56px}
+.back{
+  background:none;
+  border:0;
+  color:var(--sub);
+  padding:8px 0;
+  font-size:15px
+}
+.stage{
+  background:var(--soft);
+  border-radius:18px;
+  padding:16px;
+  display:grid;
+  place-items:center;
+  margin:8px 0 28px;
+  position:relative;
+  min-height:180px
+}
+.stage img{
+  max-width:100%;
+  max-height:70vh;
+  border-radius:10px;
+  display:block;
+  cursor:zoom-in
+}
 .zoom{
-position:absolute;right:24px;bottom:24px;background:var(--surface);
-border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px
+  position:absolute;
+  right:24px;
+  bottom:24px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 14px;
+  font-size:13px
 }
 .meta{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 .meta h4{margin:0 0 4px;font-size:14px;color:var(--accent)}
 .meta p{margin:0 0 20px}
-footer{background:var(--band);margin-top:24px;padding:40px 0 48px;font-size:14px}
-footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+footer{
+  background:var(--band);
+  margin-top:24px;
+  padding:40px 0 48px;
+  font-size:14px
+}
+footer .cols{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px
+}
 footer h4{margin:0 0 4px}
 footer p{margin:0 0 6px;color:var(--sub)}
 .lb{
-position:fixed;inset:0;background:rgba(20,15,12,.88);
-display:none;z-index:20;overflow:auto;
-padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px))
+  position:fixed;
+  inset:0;
+  background:rgba(20,15,12,.88);
+  display:none;
+  z-index:20;
+  overflow:auto;
+  padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px))
 }
 .lb.on{display:grid;place-items:center}
 .lb img{max-width:100%;max-height:92vh;cursor:zoom-in;border-radius:8px}
 .lb.big img{max-width:none;max-height:none;width:200%;cursor:zoom-out}
 .lb button{
-position:fixed;top:max(12px,env(safe-area-inset-top,0px));
-right:14px;background:#fff;color:#222;border:0;border-radius:999px;padding:8px 16px
+  position:fixed;
+  top:max(12px,env(safe-area-inset-top,0px));
+  right:14px;
+  background:#fff;
+  color:#222;
+  border:0;
+  border-radius:999px;
+  padding:8px 16px
 }
 .formbox{
-border:1px solid var(--line);background:var(--surface);
-padding:20px;border-radius:16px;margin:20px 0
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:20px;
+  border-radius:16px;
+  margin:20px 0
 }
 .formbox label{display:block;font-size:14px;margin:14px 0 5px}
 .formbox input,.formbox select,.formbox textarea{
-width:100%;border:1px solid var(--line);border-radius:10px;
-background:var(--bg);color:var(--ink);padding:11px
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--ink);
+  padding:11px
 }
 .formbox textarea{min-height:90px;resize:vertical}
 .admin-item{border-bottom:1px solid var(--line);padding:16px 0}
 @media(max-width:720px){
-.hero .wrap,.meta{grid-template-columns:1fr}
-.logo{font-size:14px;line-height:1.35}
-nav button{padding:8px 6px;font-size:13px}
-.tools{align-items:stretch}
-.search{flex-basis:100%}
+  .hero .wrap,.meta{grid-template-columns:1fr}
+  .logo{font-size:14px;line-height:1.35}
+  nav button{padding:8px 6px;font-size:13px}
+  .tools{align-items:stretch}
+  .search{flex-basis:100%}
 }
 @media(prefers-reduced-motion:no-preference){
-.card .thumb img{transition:transform .25s}
-.card:hover .thumb img{transform:scale(1.03)}
+  .card .thumb img{transition:transform .25s}
+  .card:hover .thumb img{transform:scale(1.03)}
 }
 </style>
 </head>
 
 <body>
+
 <div class="notice">온라인 작품 전시회 페이지입니다.</div>
 
 <header>
-<div class="wrap">
-<button class="logo" id="logo">AI 융합 디지털 드로잉 &amp; 굿즈 제작 클래스</button>
-<nav>
-<button data-go="top">홈</button>
-<button data-go="gallery">작품 둘러보기</button>
-<button data-go="info">전시 안내</button>
-<button id="adminOpen">관리자</button>
-</nav>
-</div>
+  <div class="wrap">
+    <button class="logo" id="logo">
+      AI 융합 디지털 드로잉 &amp;
+    </button>
+    <nav>
+      <button data-go="top">홈</button>
+      <button data-go="gallery">작품 둘러보기</button>
+      <button data-go="info">전시 안내</button>
+      <button id="adminOpen">관리자</button>
+    </nav>
+  </div>
 </header>
 
 <main id="app"></main>
 
 <div class="lb" id="lb" role="dialog" aria-label="작품 확대 보기">
-<button id="lbx">닫기</button>
-<img id="lbi" alt="">
+  <button id="lbx">닫기</button>
+  <img id="lbi" alt="">
 </div>
 
 <div id="adminLoginBox" role="dialog" aria-modal="true"
-style="display:none;position:fixed;inset:0;z-index:100;background:rgba(20,15,12,.65);padding:20px;align-items:center;justify-content:center">
-<form id="adminLoginForm" style="width:min(100%,420px);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:24px">
-<h2>관리자 로그인</h2>
-<p style="color:var(--sub)">관리자 비밀번호를 입력해 주세요.</p>
-<label for="adminPassword">비밀번호</label>
-<input id="adminPassword" type="password" autocomplete="current-password" required
-style="display:block;width:100%;margin:8px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:12px">
-<p id="adminLoginError" role="alert" style="display:none;color:#b42318">비밀번호가 맞지 않습니다.</p>
-<div style="display:flex;gap:8px;justify-content:flex-end">
-<button type="button" id="adminCancel" class="chip">취소</button>
-<button type="submit" class="btn">로그인</button>
-</div>
-</form>
+  style="display:none;position:fixed;inset:0;z-index:100;background:rgba(20,15,12,.65);padding:20px;align-items:center;justify-content:center">
+
+  <form id="adminLoginForm"
+    style="width:min(100%,420px);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:24px">
+
+    <h2>관리자 로그인</h2>
+    <p style="color:var(--sub)">관리자 비밀번호를 입력해 주세요.</p>
+
+    <label for="adminPassword">비밀번호</label>
+    <input id="adminPassword" type="password" autocomplete="current-password" required
+      style="display:block;width:100%;margin:8px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:12px">
+
+    <p id="adminLoginError" role="alert" style="display:none;color:#b42318">
+      비밀번호가 맞지 않습니다.
+    </p>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button type="button" id="adminCancel" class="chip">취소</button>
+      <button type="submit" class="btn">로그인</button>
+    </div>
+  </form>
 </div>
 
 <script>
@@ -190,33 +371,39 @@ style="display:block;width:100%;margin:8px 0 16px;border:1px solid var(--line);b
 const SUPABASE_URL = 'https://rjfmpefivzcgewhddboe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_cd1krCL4H2UvQX5d0yz_-w_YTpRzoKG';
 
-const { createClient } = supabase;
+const { createClient } = window.supabase;
 const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 
 // ------------------------------------
 // 2. 전시 분류
 // ------------------------------------
 
-const CATS = ['전체','캐릭터','일러스트','굿즈디자인','AI 제작','디지털 드로잉'];
-
-const GRADES = ['전체','3학년','4학년','5학년','6학년'];
+const GRADES = [
+  '전체',
+  '3학년',
+  '4학년',
+  '5학년',
+  '6학년'
+];
 
 const ACTIVITY_TYPES = [
   '전체',
-  '오프라인 레이어 활동',
-  '캐릭터 제작 기록',
-  '완성된 캐릭터'
+  '오프라인 레이어 조별활동',
+  '캐릭터 제작과정',
+  '캐릭터 완성'
 ];
 
 let W = [];
-let cat = '전체';
 let grade = '전체';
 let className = '전체';
 let activityType = '전체';
 let q = '';
 let view = 'home';
+let loadError = '';
 
 const app = document.getElementById('app');
+
 
 // ------------------------------------
 // 3. 공통 함수
@@ -241,33 +428,58 @@ function art(h=200){
   <path d="M185 195q15 14 30 0" stroke="#3B2F2A" stroke-width="5" fill="none"/>
   <text x="12" y="288" font-size="14" fill="#3B2F2A">예시 이미지</text>
   </svg>`;
+
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
 }
 
-function imageUrl(w, mode='ai'){
+
+// 원본과 AI 이미지를 각각 구분해서 가져옵니다.
+function imageUrl(w,mode='ai'){
   if(mode === 'original'){
-    return w.original_image_url || w.image_url || '';
+    return w.original_image_url || '';
   }
-  return w.image_url || w.original_image_url || '';
+
+  return w.image_url || '';
 }
 
-function img(w, mode='ai'){
-  const src = imageUrl(w, mode);
-  if(!src) return '<span class="fallback">이미지가 없습니다.</span>';
+
+// 갤러리 카드에서는 AI 이미지가 있으면 AI 이미지,
+// 없으면 원본 이미지를 표시합니다.
+function cardImageUrl(w){
+  return imageUrl(w,'ai') || imageUrl(w,'original');
+}
+
+
+function img(w){
+  const src = cardImageUrl(w);
+
+  if(!src){
+    return '<span class="fallback">이미지가 없습니다.</span>';
+  }
 
   return `<img src="${E(src)}" alt="${E(w.title)}" loading="lazy"
     onerror="this.outerHTML='<span class=&quot;fallback&quot;>이미지를 불러오지 못했어요</span>'">`;
 }
 
-function tagsOf(w){
-  return [w.category].filter(Boolean);
+
+// 학년별 반 개수
+function getClassOptions(selectedGrade){
+  const count = selectedGrade === '3학년' ? 3 : 5;
+
+  return Array.from(
+    {length:count},
+    (_,i)=>`${i+1}반`
+  );
 }
+
 
 // ------------------------------------
 // 4. 작품 데이터 불러오기
 // ------------------------------------
 
 async function fetchWorks(){
+  loadError = '';
+
   const {data,error} = await _supabase
     .from('works')
     .select('*')
@@ -275,15 +487,34 @@ async function fetchWorks(){
 
   if(error){
     console.error('작품 데이터 불러오기 실패:',error);
-    alert('작품 데이터를 불러오지 못했습니다. Supabase 설정을 확인해 주세요.');
-    return;
+
+    loadError = error.message || '알 수 없는 오류가 발생했습니다.';
+    W = [];
+
+    if(view === 'home'){
+      home();
+    }
+
+    if(view === 'admin'){
+      adminPage();
+    }
+
+    return false;
   }
 
   W = data || [];
 
-  if(view === 'home') home();
-  if(view === 'admin') adminPage();
+  if(view === 'home'){
+    home();
+  }
+
+  if(view === 'admin'){
+    adminPage();
+  }
+
+  return true;
 }
+
 
 // ------------------------------------
 // 5. 갤러리 필터링
@@ -294,24 +525,30 @@ function list(){
     (grade === '전체' || w.grade === grade) &&
     (className === '전체' || w.class_name === className) &&
     (activityType === '전체' || w.activity_type === activityType) &&
-    (cat === '전체' || tagsOf(w).includes(cat)) &&
-    (!q || ((w.title || '')+(w.artist_name || '')).toLowerCase().includes(q.trim().toLowerCase()))
+    (
+      !q ||
+      ((w.title || '')+(w.artist_name || ''))
+        .toLowerCase()
+        .includes(q.trim().toLowerCase())
+    )
   );
 }
 
+
 // ------------------------------------
-// 6. 첫 화면
+// 6. 첫 화면 설정
 // ------------------------------------
 
 let settings = {
-  siteTitle:'AI 융합 디지털 드로잉 & 굿즈 제작 클래스',
+  siteTitle:'AI 융합 디지털 드로잉',
   eyebrow:'온라인 작품 전시회',
-  heading:'어린이들의 창작물을\n하나의 전시회로 만나요',
+  heading:'전곡초등학교\n학생들의 캐릭터\n전시회 둘러보기',
   lead:'학생들이 직접 상상하고 그린 작품을 한자리에서 감상해 보세요.',
   introTitle:'전시 소개',
   intro1:'교육 프로그램의 목적과 학생들의 창작 활동을 소개하는 자리입니다.',
-  intro2:'상상 속 캐릭터를 직접 그리고, 디지털 도구와 AI를 함께 써 보며 하나의 작품으로 완성하는 과정을 담았습니다.'
+  intro2:'상상 속 캐릭터를 직접 그리고, 디지털 도구와 AI를 함께 써 보며 하나의 캐릭터로 완성하는 과정을 담았습니다.'
 };
+
 
 function home(){
   view = 'home';
@@ -327,7 +564,10 @@ function home(){
         <p class="lead">${E(settings.lead)}</p>
         <button class="btn" data-go="gallery">작품 감상하기</button>
       </div>
-      <div class="mosaic">${mosaicImgs || '등록된 작품이 없습니다.'}</div>
+
+      <div class="mosaic">
+        ${mosaicImgs || '등록된 작품이 없습니다.'}
+      </div>
     </div>
   </div>
 
@@ -346,10 +586,15 @@ function home(){
       <div class="tools">
         <input class="search" id="q" type="search"
           placeholder="작품명 또는 작가명으로 검색"
-          aria-label="작품 검색" value="${E(q)}">
+          aria-label="작품 검색"
+          value="${E(q)}">
 
         <select class="search" id="gradeFilter" aria-label="학년 선택">
-          ${GRADES.map(g=>`<option value="${E(g)}" ${g===grade?'selected':''}>${g==='전체'?'전체 학년':E(g)}</option>`).join('')}
+          ${GRADES.map(g=>
+            `<option value="${E(g)}" ${g===grade?'selected':''}>
+              ${g==='전체'?'전체 학년':E(g)}
+            </option>`
+          ).join('')}
         </select>
 
         <select class="search" id="classFilter" aria-label="반 선택">
@@ -360,26 +605,38 @@ function home(){
       <h3>활동 분류</h3>
       <div class="chips" id="activityChips"></div>
 
-      <h3>작품 종류</h3>
-      <div class="chips" id="categoryChips"></div>
-
       <div id="res"></div>
     </div>
   </section>
 
   <footer id="info">
     <div class="wrap">
-      <p style="font-size:16px;margin:0 0 20px">학생들의 창작을 따뜻하게 응원해 주세요.</p>
+      <p style="font-size:16px;margin:0 0 20px">
+        학생들의 창작을 따뜻하게 응원해 주세요.
+      </p>
+
       <div class="cols">
-        <div><h4>전시 안내</h4><p>작품은 전시 목적으로 공개됩니다.</p></div>
-        <div><h4>개인정보 안내</h4><p>실명 대신 공개용 이름을 사용합니다.</p></div>
-        <div><h4>운영 정보</h4><p>온라인 전시관 시스템</p></div>
+        <div>
+          <h4>전시 안내</h4>
+          <p>작품은 전시 목적으로 공개됩니다.</p>
+        </div>
+
+        <div>
+          <h4>개인정보 안내</h4>
+          <p>실명 대신 공개용 이름을 사용합니다.</p>
+        </div>
+
+        <div>
+          <h4>운영 정보</h4>
+          <p>온라인 전시관 시스템</p>
+        </div>
       </div>
     </div>
   </footer>`;
 
   draw();
 }
+
 
 // ------------------------------------
 // 7. 필터 그리기
@@ -389,57 +646,71 @@ function draw(){
   const gradeEl = document.getElementById('gradeFilter');
   const classEl = document.getElementById('classFilter');
   const activityEl = document.getElementById('activityChips');
-  const categoryEl = document.getElementById('categoryChips');
 
-  const classes = [...new Set(
-    W.filter(w=>grade==='전체'||w.grade===grade)
-      .map(w=>w.class_name)
-      .filter(Boolean)
-  )].sort((a,b)=>a.localeCompare(b,'ko',{numeric:true}));
+  // 작품 등록 여부와 관계없이 학년에 맞는 반을 표시합니다.
+  const classes = getClassOptions(grade);
 
+  // 선택한 학년에 없는 반이 선택되어 있다면 전체 반으로 초기화합니다.
   if(className !== '전체' && !classes.includes(className)){
     className = '전체';
   }
 
-  if(gradeEl) gradeEl.value = grade;
+  if(gradeEl){
+    gradeEl.value = grade;
+  }
 
   if(classEl){
     classEl.innerHTML =
       `<option value="전체">전체 반</option>` +
-      classes.map(c=>`<option value="${E(c)}">${E(c)}</option>`).join('');
+      classes.map(c=>
+        `<option value="${E(c)}">${E(c)}</option>`
+      ).join('');
+
     classEl.value = className;
   }
 
+  // 활동 분류 버튼
   if(activityEl){
     activityEl.innerHTML = ACTIVITY_TYPES.map(t=>
-      `<button class="chip" aria-pressed="${t===activityType}"
+      `<button class="chip"
+        aria-pressed="${t===activityType}"
         data-activity="${E(t)}">${E(t)}</button>`
-    ).join('');
-  }
-
-  if(categoryEl){
-    categoryEl.innerHTML = CATS.map(c=>
-      `<button class="chip" aria-pressed="${c===cat}"
-        data-cat="${E(c)}">${E(c)}</button>`
     ).join('');
   }
 
   const l = list();
   const resEl = document.getElementById('res');
 
-  if(resEl){
-    resEl.innerHTML = l.length
-      ? `<div class="grid">${l.map(w=>`
+  if(!resEl) return;
+
+  // Supabase 조회 오류 표시
+  if(loadError){
+    resEl.innerHTML = `
+      <div class="error-message">
+        <strong>작품 데이터를 불러오지 못했습니다.</strong>
+        <p>${E(loadError)}</p>
+        <p>Supabase 테이블, API 키, RLS 조회 정책을 확인해 주세요.</p>
+      </div>
+    `;
+    return;
+  }
+
+  resEl.innerHTML = l.length
+    ? `<div class="grid">
+        ${l.map(w=>`
           <button class="card" data-id="${E(w.id)}">
             <span class="thumb">${img(w)}</span>
             <h3>${E(w.title)}</h3>
-            <small>${E(w.grade)} ${E(w.class_name)} · ${E(w.artist_name)}</small>
-            <span class="tag">${E(w.activity_type || w.category)}</span>
+            <small>
+              ${E(w.grade)} ${E(w.class_name)} · ${E(w.artist_name)}
+            </small>
+            <span class="tag">${E(w.activity_type || '')}</span>
           </button>
-        `).join('')}</div>`
-      : '<div class="empty">등록된 작품이 없거나 조건에 맞는 작품이 없어요.</div>';
-  }
+        `).join('')}
+      </div>`
+    : '<div class="empty">등록된 작품이 없거나 조건에 맞는 작품이 없어요.</div>';
 }
+
 
 // ------------------------------------
 // 8. 작품 상세 페이지
@@ -447,27 +718,49 @@ function draw(){
 
 function detail(id){
   const w = W.find(item=>String(item.id)===String(id));
+
   if(!w) return;
 
   view = 'detail';
-  let mode = 'ai';
+
+  // 표시 가능한 이미지에 따라 처음 모드를 정합니다.
+  let mode = w.image_url ? 'ai' : 'original';
+
+  const originalAvailable = Boolean(w.original_image_url);
+  const aiAvailable = Boolean(w.image_url);
 
   app.innerHTML = `
   <div class="detail">
     <div class="wrap">
+
       <button class="back" id="back">← 전체 작품 목록</button>
 
       <div class="chips" style="margin:16px 0">
-        <button class="chip" data-image-mode="original" aria-pressed="false">원본 그림</button>
-        <button class="chip" data-image-mode="ai" aria-pressed="true">AI 변환본</button>
+        <button class="chip"
+          data-image-mode="original"
+          aria-pressed="${mode==='original'}"
+          ${!originalAvailable?'disabled':''}>
+          원본 그림
+        </button>
+
+        <button class="chip"
+          data-image-mode="ai"
+          aria-pressed="${mode==='ai'}"
+          ${!aiAvailable?'disabled':''}>
+          AI 변환본
+        </button>
       </div>
 
       <div class="stage">
-        <img id="detailImage" src="${E(imageUrl(w,mode)||art())}" alt="${E(w.title)}">
+        <img id="detailImage"
+          src="${E(imageUrl(w,mode)||art())}"
+          alt="${E(w.title)}">
+
         <button class="zoom" id="zoom">확대해서 보기</button>
       </div>
 
       <h1 style="font-size:28px">${E(w.title)}</h1>
+
       <p class="lead" style="margin-bottom:24px">
         ${E(w.grade)} ${E(w.class_name)} · ${E(w.artist_name)}
       </p>
@@ -476,18 +769,20 @@ function detail(id){
         <div>
           <h4>작품 설명</h4>
           <p>${E(w.description)}</p>
+
           <h4>창작 의도</h4>
           <p>${E(w.intention)}</p>
         </div>
+
         <div>
           <h4>활동 분류</h4>
           <p>${E(w.activity_type)}</p>
-          <h4>작품 종류</h4>
-          <p>${E(w.category)}</p>
+
           <h4>제작 도구 및 재료</h4>
           <p>${E(w.tools)}</p>
         </div>
       </div>
+
     </div>
   </div>`;
 
@@ -500,13 +795,20 @@ function detail(id){
   };
 
   function changeImage(nextMode){
+    const nextUrl = imageUrl(w,nextMode);
+
+    if(!nextUrl) return;
+
     mode = nextMode;
 
     const detailImage = document.getElementById('detailImage');
-    detailImage.src = imageUrl(w,mode) || art();
+    detailImage.src = nextUrl;
 
     document.querySelectorAll('[data-image-mode]').forEach(btn=>{
-      btn.setAttribute('aria-pressed',String(btn.dataset.imageMode===mode));
+      btn.setAttribute(
+        'aria-pressed',
+        String(btn.dataset.imageMode===mode)
+      );
     });
   }
 
@@ -515,9 +817,11 @@ function detail(id){
   });
 
   const zoomIt = ()=>lb(w,mode);
+
   document.getElementById('zoom').onclick = zoomIt;
   document.getElementById('detailImage').onclick = zoomIt;
 }
+
 
 // ------------------------------------
 // 9. 이미지 확대
@@ -527,8 +831,10 @@ function lb(w,mode='ai'){
   const b = document.getElementById('lb');
   const lbi = document.getElementById('lbi');
 
+  const src = imageUrl(w,mode);
+
   if(lbi){
-    lbi.src = imageUrl(w,mode) || art();
+    lbi.src = src || art();
     lbi.alt = w.title || '작품 이미지';
   }
 
@@ -540,9 +846,14 @@ function lb(w,mode='ai'){
 
 const L = document.getElementById('lb');
 
-document.getElementById('lbx').onclick = ()=>L.classList.remove('on');
+document.getElementById('lbx').onclick = ()=>{
+  L.classList.remove('on');
+};
 
-document.getElementById('lbi').onclick = ()=>L.classList.toggle('big');
+document.getElementById('lbi').onclick = ()=>{
+  L.classList.toggle('big');
+};
+
 
 // ------------------------------------
 // 10. 페이지 이동 및 필터 이벤트
@@ -555,22 +866,25 @@ function go(k){
   }
 
   const targetEl = document.getElementById(
-    k==='top'?'top':k==='gallery'?'gallery':'info'
+    k==='top'?'top':
+    k==='gallery'?'gallery':
+    'info'
   );
 
-  if(targetEl) targetEl.scrollIntoView({behavior:'smooth'});
+  if(targetEl){
+    targetEl.scrollIntoView({behavior:'smooth'});
+  }
 }
 
+
+// 갤러리 버튼 이벤트
 document.addEventListener('click',e=>{
-  const t = e.target.closest('[data-go],[data-cat],[data-id],[data-activity]');
+  const t = e.target.closest('[data-go],[data-id],[data-activity]');
 
   if(!t) return;
 
   if(t.dataset.go){
     go(t.dataset.go);
-  }else if(t.dataset.cat){
-    cat = t.dataset.cat;
-    draw();
   }else if(t.dataset.activity){
     activityType = t.dataset.activity;
     draw();
@@ -579,6 +893,8 @@ document.addEventListener('click',e=>{
   }
 });
 
+
+// 검색
 document.addEventListener('input',e=>{
   if(e.target.id==='q'){
     q = e.target.value;
@@ -586,6 +902,8 @@ document.addEventListener('input',e=>{
   }
 });
 
+
+// 학년 및 반 선택
 document.addEventListener('change',e=>{
   if(e.target.id==='gradeFilter'){
     grade = e.target.value;
@@ -599,19 +917,22 @@ document.addEventListener('change',e=>{
   }
 });
 
+
+// 로고 클릭
 document.getElementById('logo').onclick = ()=>{
   view='home';
   home();
   window.scrollTo(0,0);
 };
 
+
 // ------------------------------------
 // 11. 관리자 로그인
 // ------------------------------------
 
-// 기존에 사용하던 임시 로그인 방식입니다.
-// 브라우저 코드에 비밀번호가 포함되므로 보안 인증으로 사용할 수 없습니다.
-// 실제 공개 운영 전 Supabase Auth로 교체해야 합니다.
+// 임시 로그인 방식입니다.
+// 브라우저 코드에 비밀번호가 포함되므로 실제 보안 인증이 아닙니다.
+// 실제 공개 운영 전 Supabase Auth와 RLS로 교체해야 합니다.
 
 const ADMIN_PASSWORD = '기존 관리자 비밀번호를 여기에 입력';
 
@@ -643,6 +964,7 @@ document.getElementById('adminLoginForm').onsubmit = e=>{
   }
 };
 
+
 // ------------------------------------
 // 12. 관리자 페이지
 // ------------------------------------
@@ -653,7 +975,9 @@ function adminPage(){
   app.innerHTML = `
   <section>
     <div class="wrap">
+
       <button class="back" id="adminBack">← 전시관으로 돌아가기</button>
+
       <h1>전시관 관리자</h1>
       <p class="lead">작품을 추가하거나 수정·삭제할 수 있습니다.</p>
 
@@ -665,25 +989,38 @@ function adminPage(){
 
       <h2>등록된 작품 (${W.length})</h2>
 
+      ${loadError ? `
+        <div class="error-message">
+          작품 목록을 불러오지 못했습니다.
+          <p>${E(loadError)}</p>
+        </div>
+      ` : ''}
+
       <div>
         ${W.map(w=>`
           <div class="admin-item">
             <div style="display:flex;gap:16px;align-items:center">
+
               <div style="width:90px;height:75px;flex-shrink:0">
                 <div class="thumb" style="height:75px">${img(w)}</div>
               </div>
+
               <div style="min-width:0;flex:1">
                 <strong>${E(w.title)}</strong>
+
                 <small style="display:block;color:var(--sub)">
                   ${E(w.grade)} ${E(w.class_name)} · ${E(w.activity_type)}
                 </small>
+
                 <button class="chip" data-edit="${E(w.id)}">수정</button>
                 <button class="chip" data-delete="${E(w.id)}">삭제</button>
               </div>
+
             </div>
           </div>
         `).join('')}
       </div>
+
     </div>
   </section>`;
 
@@ -692,28 +1029,41 @@ function adminPage(){
     home();
   };
 
-  document.getElementById('newWork').onclick = ()=>workForm();
+  document.getElementById('newWork').onclick = ()=>{
+    workForm();
+  };
 
   app.querySelectorAll('[data-edit]').forEach(b=>{
-    b.onclick = ()=>workForm(W.find(w=>String(w.id)===b.dataset.edit));
+    b.onclick = ()=>{
+      workForm(
+        W.find(w=>String(w.id)===b.dataset.edit)
+      );
+    };
   });
 
   app.querySelectorAll('[data-delete]').forEach(b=>{
     b.onclick = async ()=>{
       if(!confirm('이 작품을 정말 삭제할까요?')) return;
 
-      const {error} = await _supabase.from('works').delete().eq('id',b.dataset.delete);
+      const {error} = await _supabase
+        .from('works')
+        .delete()
+        .eq('id',b.dataset.delete);
 
       if(error){
         alert('삭제 실패: '+error.message);
       }else{
         alert('삭제되었습니다.');
         await fetchWorks();
-        adminPage();
+
+        if(view==='admin'){
+          adminPage();
+        }
       }
     };
   });
 }
+
 
 // ------------------------------------
 // 13. 이미지 업로드
@@ -722,10 +1072,17 @@ function adminPage(){
 async function uploadImage(file){
   if(!file) return '';
 
-  const allowed = ['image/jpeg','image/png','image/webp','image/gif'];
+  const allowed = [
+    'image/jpeg',
+    'image/png',
+    'image/webp',
+    'image/gif'
+  ];
 
   if(!allowed.includes(file.type)){
-    throw new Error('JPG, PNG, WEBP, GIF 이미지 파일만 업로드할 수 있습니다.');
+    throw new Error(
+      'JPG, PNG, WEBP, GIF 이미지 파일만 업로드할 수 있습니다.'
+    );
   }
 
   const ext = file.name.split('.').pop().toLowerCase();
@@ -744,6 +1101,7 @@ async function uploadImage(file){
   return data.publicUrl;
 }
 
+
 // ------------------------------------
 // 14. 작품 등록 및 수정
 // ------------------------------------
@@ -754,19 +1112,35 @@ function workForm(w={
   artist_name:'',
   grade:'3학년',
   class_name:'1반',
-  activity_type:'완성된 캐릭터',
-  category:'캐릭터',
+  activity_type:'캐릭터 완성',
   tools:'',
   description:'',
   intention:'',
   original_image_url:'',
   image_url:''
 }){
+
   const editorEl = document.getElementById('editor');
+
   if(!editorEl) return;
+
+  const initialGrade = GRADES.includes(w.grade) && w.grade !== '전체'
+    ? w.grade
+    : '3학년';
+
+  const initialClasses = getClassOptions(initialGrade);
+
+  const initialClass = initialClasses.includes(w.class_name)
+    ? w.class_name
+    : '1반';
+
+  const initialActivity = ACTIVITY_TYPES.includes(w.activity_type) && w.activity_type !== '전체'
+    ? w.activity_type
+    : '캐릭터 완성';
 
   editorEl.innerHTML = `
   <div class="formbox">
+
     <h2>${w.id?'작품 수정':'새 작품 추가'}</h2>
 
     <form id="workForm">
@@ -775,36 +1149,41 @@ function workForm(w={
       <input name="title" required value="${E(w.title)}">
 
       <label>공개 작가명</label>
-      <input name="artist_name" value="${E(w.artist_name)}"
+      <input name="artist_name"
+        value="${E(w.artist_name)}"
         placeholder="예: 3학년 1반 친구">
 
       <label>학년</label>
-      <select name="grade" required>
+      <select name="grade" id="workGrade" required>
         ${GRADES.filter(g=>g!=='전체').map(g=>
-          `<option value="${E(g)}" ${w.grade===g?'selected':''}>${E(g)}</option>`
+          `<option value="${E(g)}" ${initialGrade===g?'selected':''}>
+            ${E(g)}
+          </option>`
         ).join('')}
       </select>
 
       <label>반</label>
-      <input name="class_name" required value="${E(w.class_name)}"
-        placeholder="예: 1반">
+      <select name="class_name" id="workClass" required>
+        ${initialClasses.map(c=>
+          `<option value="${E(c)}" ${initialClass===c?'selected':''}>
+            ${E(c)}
+          </option>`
+        ).join('')}
+      </select>
 
       <label>활동 분류</label>
       <select name="activity_type" required>
         ${ACTIVITY_TYPES.filter(t=>t!=='전체').map(t=>
-          `<option value="${E(t)}" ${w.activity_type===t?'selected':''}>${E(t)}</option>`
-        ).join('')}
-      </select>
-
-      <label>작품 종류</label>
-      <select name="category">
-        ${CATS.filter(c=>c!=='전체').map(c=>
-          `<option value="${E(c)}" ${w.category===c?'selected':''}>${E(c)}</option>`
+          `<option value="${E(t)}" ${initialActivity===t?'selected':''}>
+            ${E(t)}
+          </option>`
         ).join('')}
       </select>
 
       <label>제작 도구</label>
-      <input name="tools" value="${E(w.tools)}" placeholder="예: ibisPaint, AI">
+      <input name="tools"
+        value="${E(w.tools)}"
+        placeholder="예: ibisPaint, AI">
 
       <label>작품 설명</label>
       <textarea name="description">${E(w.description)}</textarea>
@@ -813,17 +1192,21 @@ function workForm(w={
       <textarea name="intention">${E(w.intention)}</textarea>
 
       <label>원본 그림 업로드</label>
-      <input type="file" id="originalImage" accept="image/jpeg,image/png,image/webp,image/gif">
+      <input type="file" id="originalImage"
+        accept="image/jpeg,image/png,image/webp,image/gif">
 
       ${w.original_image_url
-        ? `<p><img src="${E(w.original_image_url)}" style="height:90px;border-radius:8px"></p>`
+        ? `<p><img src="${E(w.original_image_url)}"
+            style="height:90px;border-radius:8px"></p>`
         : ''}
 
       <label>AI 변환본 업로드</label>
-      <input type="file" id="aiImage" accept="image/jpeg,image/png,image/webp,image/gif">
+      <input type="file" id="aiImage"
+        accept="image/jpeg,image/png,image/webp,image/gif">
 
       ${w.image_url
-        ? `<p><img src="${E(w.image_url)}" style="height:90px;border-radius:8px"></p>`
+        ? `<p><img src="${E(w.image_url)}"
+            style="height:90px;border-radius:8px"></p>`
         : ''}
 
       <p style="font-size:13px;color:var(--sub)">
@@ -831,28 +1214,54 @@ function workForm(w={
       </p>
 
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px">
-        <button class="btn" id="saveWork" type="submit">Supabase에 저장</button>
-        <button class="chip" type="button" id="cancelForm">취소</button>
+        <button class="btn" id="saveWork" type="submit">
+          Supabase에 저장
+        </button>
+
+        <button class="chip" type="button" id="cancelForm">
+          취소
+        </button>
       </div>
+
     </form>
   </div>`;
+
+  // 관리자 등록 화면에서도 학년별 반을 자동 변경합니다.
+  document.getElementById('workGrade').onchange = e=>{
+    const selectedGrade = e.target.value;
+    const classSelect = document.getElementById('workClass');
+
+    const options = getClassOptions(selectedGrade);
+
+    classSelect.innerHTML = options.map(c=>
+      `<option value="${E(c)}">${E(c)}</option>`
+    ).join('');
+  };
 
   document.getElementById('cancelForm').onclick = ()=>{
     editorEl.innerHTML='';
   };
 
+
+  // 저장
   document.getElementById('workForm').onsubmit = async e=>{
     e.preventDefault();
 
     const saveBtn = document.getElementById('saveWork');
+
     saveBtn.disabled = true;
     saveBtn.textContent = '저장 중...';
 
     const f = e.target;
-    const originalFile = document.getElementById('originalImage').files[0];
-    const aiFile = document.getElementById('aiImage').files[0];
+
+    const originalFile =
+      document.getElementById('originalImage').files[0];
+
+    const aiFile =
+      document.getElementById('aiImage').files[0];
 
     try{
+
       const originalUrl = originalFile
         ? await uploadImage(originalFile)
         : (w.original_image_url||'');
@@ -862,57 +1271,88 @@ function workForm(w={
         : (w.image_url||'');
 
       const payload = {
-        title:f.title.value.trim(),
-        artist_name:f.artist_name.value.trim(),
-        grade:f.grade.value,
-        class_name:f.class_name.value.trim(),
-        activity_type:f.activity_type.value,
-        category:f.category.value,
-        tools:f.tools.value.trim(),
-        description:f.description.value.trim(),
-        intention:f.intention.value.trim(),
+        title:f.elements['title'].value.trim(),
+        artist_name:f.elements['artist_name'].value.trim(),
+        grade:f.elements['grade'].value,
+        class_name:f.elements['class_name'].value,
+        activity_type:f.elements['activity_type'].value,
+        tools:f.elements['tools'].value.trim(),
+        description:f.elements['description'].value.trim(),
+        intention:f.elements['intention'].value.trim(),
         original_image_url:originalUrl,
         image_url:aiUrl
       };
 
       if(!payload.original_image_url && !payload.image_url){
-        throw new Error('원본 또는 AI 변환 이미지 중 하나는 업로드해 주세요.');
+        throw new Error(
+          '원본 또는 AI 변환 이미지 중 하나는 업로드해 주세요.'
+        );
       }
 
       let result;
 
       if(w.id){
-        result = await _supabase.from('works').update(payload).eq('id',w.id);
+
+        // 수정 시 기존 category 컬럼은 건드리지 않습니다.
+        result = await _supabase
+          .from('works')
+          .update(payload)
+          .eq('id',w.id);
+
       }else{
-        result = await _supabase.from('works').insert([payload]);
+
+        // 기존 DB에서 category가 필수인 경우를 위한 기본값입니다.
+        // 화면에서는 더 이상 category를 사용하지 않습니다.
+        result = await _supabase
+          .from('works')
+          .insert([{
+            ...payload,
+            category:'캐릭터'
+          }]);
       }
 
-      if(result.error) throw result.error;
+      if(result.error){
+        throw result.error;
+      }
 
       alert('작품이 저장되었습니다.');
 
       await fetchWorks();
 
-      if(view==='admin') adminPage();
+      if(view==='admin'){
+        adminPage();
+      }
 
     }catch(error){
-      console.error(error);
-      alert('저장 중 오류가 발생했습니다: '+error.message);
+
+      console.error('작품 저장 오류:',error);
+
+      alert(
+        '저장 중 오류가 발생했습니다: '+
+        (error.message || '알 수 없는 오류')
+      );
+
       saveBtn.disabled = false;
       saveBtn.textContent = 'Supabase에 저장';
     }
   };
 }
 
+
 // ------------------------------------
 // 15. 최초 실행
 // ------------------------------------
 
 async function init(){
+
+  // 데이터 조회가 실패해도 기본 화면과 오류 메시지는 표시합니다.
+  home();
+
   await fetchWorks();
 }
 
 init();
+
 </script>
 </body>
 </html>
