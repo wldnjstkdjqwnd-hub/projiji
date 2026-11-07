@@ -925,33 +925,29 @@ document.getElementById('logo').onclick = ()=>{
   window.scrollTo(0,0);
 };
 
-
 // ------------------------------------
 // 11. 관리자 로그인
 // ------------------------------------
 
-// 임시 로그인 방식입니다.
-// 브라우저 코드에 비밀번호가 포함되므로 실제 보안 인증이 아닙니다.
-// 실제 공개 운영 전 Supabase Auth와 RLS로 교체해야 합니다.
-
-const ADMIN_PASSWORD = '기존 관리자 비밀번호를 여기에 입력';
+const ADMIN_PASSWORD = '202611';
 
 const adminLoginBox = document.getElementById('adminLoginBox');
 
 function adminLogin(){
-  document.getElementById('adminLoginError').style.display='none';
-  document.getElementById('adminPassword').value='';
-  adminLoginBox.style.display='flex';
+  document.getElementById('adminLoginError').style.display = 'none';
+  document.getElementById('adminPassword').value = '';
+  adminLoginBox.style.display = 'flex';
 }
 
 function closeAdminLogin(){
-  adminLoginBox.style.display='none';
+  adminLoginBox.style.display = 'none';
 }
 
 document.getElementById('adminOpen').onclick = adminLogin;
+
 document.getElementById('adminCancel').onclick = closeAdminLogin;
 
-document.getElementById('adminLoginForm').onsubmit = e=>{
+document.getElementById('adminLoginForm').onsubmit = function(e){
   e.preventDefault();
 
   const pw = document.getElementById('adminPassword').value;
@@ -960,10 +956,9 @@ document.getElementById('adminLoginForm').onsubmit = e=>{
     closeAdminLogin();
     adminPage();
   }else{
-    document.getElementById('adminLoginError').style.display='block';
+    document.getElementById('adminLoginError').style.display = 'block';
   }
 };
-
 
 // ------------------------------------
 // 12. 관리자 페이지
